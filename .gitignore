@@ -1,0 +1,10 @@
+bak
+.idea/
+instance
+noneed
+.terraform.lock.hcl
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+

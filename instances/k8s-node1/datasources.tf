@@ -14,6 +14,14 @@ data "template_file" "setup-template" {
   }
 }
 
+data "template_file" "kubeconfig" {
+  template = file("${path.module}/scripts/kubeconfig")
+
+  vars = {
+
+  }
+}
+
 data "template_file" "join" {
   template = file("${path.module}/scripts/join.sh")
 
@@ -28,6 +36,7 @@ data "template_file" "k8s_node1_cloud_init_file" {
   vars = {
     setup_preflight_sh_content = base64gzip(data.template_file.setup-preflight.rendered)
     setup_template_sh_content  = base64gzip(data.template_file.setup-template.rendered)
+    kubeconfig_content  = base64gzip(data.template_file.kubeconfig.rendered)
     join_sh_content  = base64gzip(data.template_file.join.rendered)
   }
 }

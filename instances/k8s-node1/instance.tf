@@ -29,6 +29,26 @@ resource "oci_core_instance" "k8s-node1" {
   }
   preserve_boot_volume = false
 
+  provisioner "local-exec" {
+    command = "echo start"
+  }
+
+  provisioner "local-exec" {
+    command = "sleep 5m"
+  }
+
+  provisioner "local-exec" {
+    command = "if [ $(kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig get nodes --no-headers=true | grep -v Ready | grep none | wc -l ) -gt 0 ]; then kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig get nodes --no-headers=true | grep -v Ready | grep none | awk '{print $1}' | xargs kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig drain --force;fi"
+  }
+
+  provisioner "local-exec" {
+    command = "if [ $(kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig get nodes --no-headers=true | grep -v Ready | grep none | wc -l ) -gt 0 ]; then kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig get nodes --no-headers=true | grep -v Ready | grep none | awk '{print $1}' | xargs kubectl --kubeconfig /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig delete node;fi"
+  }
+
+  provisioner "local-exec" {
+    command = "echo done"
+  }
+
   timeouts {
     create = "60m"
   }

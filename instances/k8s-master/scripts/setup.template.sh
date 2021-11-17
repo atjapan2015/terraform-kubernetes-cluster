@@ -121,3 +121,5 @@ echo "complete -F __start_kubectl k" >>/home/opc/.bashrc
 
 sudo kubeadm token create --print-join-command > /home/opc/join.sh
 sudo chown opc:opc /home/opc/join.sh
+
+sudo sed -i 's/'''$LOCAL_IP'''/'''$EXTERNAL_IP'''/g' /home/opc/.kube/config

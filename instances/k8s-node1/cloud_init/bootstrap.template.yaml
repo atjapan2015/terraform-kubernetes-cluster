@@ -20,11 +20,11 @@ write_files:
     encoding: "gzip+base64"
     content: |
       ${setup_preflight_sh_content}
-  - path: "/root/setup.sh"
-    permissions: "0777"
+  - path: "/root/.kube/config"
+    permissions: "0600"
     encoding: "gzip+base64"
     content: |
-      ${setup_template_sh_content}
+      ${kubeconfig_content}
   - path: "/root/join.sh"
     permissions: "0777"
     encoding: "gzip+base64"

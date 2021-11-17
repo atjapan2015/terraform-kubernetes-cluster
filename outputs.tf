@@ -29,3 +29,21 @@ output "k8s-node1-ocid" {
 output "k8s-node1-public-ip" {
   value = module.k8s-node1.k8s-node1-public-ip
 }
+output "k8s-node2-name" {
+  value = module.k8s-node2.k8s-node2-name
+}
+output "k8s-node2-ocid" {
+  value = module.k8s-node2.k8s-node2-ocid
+}
+output "k8s-node2-public-ip" {
+  value = module.k8s-node2.k8s-node2-public-ip
+}
+output "k8s-node3-name" {
+  value = module.k8s-node3.k8s-node3-name
+}
+output "k8s-node3-ocid" {
+  value = module.k8s-node3.k8s-node3-ocid
+}
+output "k8s-node3-public-ip" {
+  value = module.k8s-node3.k8s-node3-public-ip
+}

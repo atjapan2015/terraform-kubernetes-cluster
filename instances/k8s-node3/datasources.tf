@@ -30,7 +30,7 @@ data "template_file" "join" {
   }
 }
 
-data "template_file" "k8s_node1_cloud_init_file" {
+data "template_file" "k8s_node3_cloud_init_file" {
   template = file("${path.module}/cloud_init/bootstrap.template.yaml")
 
   vars = {
@@ -41,13 +41,13 @@ data "template_file" "k8s_node1_cloud_init_file" {
   }
 }
 
-data "template_cloudinit_config" "k8s-node1" {
+data "template_cloudinit_config" "k8s-node3" {
   gzip          = true
   base64_encode = true
 
   part {
     filename     = "bootstrap.yaml"
     content_type = "text/cloud-config"
-    content      = data.template_file.k8s_node1_cloud_init_file.rendered
+    content      = data.template_file.k8s_node3_cloud_init_file.rendered
   }
 }

@@ -42,6 +42,10 @@ resource "oci_core_instance" "k8s-master" {
   }
 
   provisioner "local-exec" {
+    command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null opc@${self.public_ip}:/home/opc/.kube/config /u01/workspace/terraform/instances/k8s-node1/scripts/kubeconfig"
+  }
+
+  provisioner "local-exec" {
     command = "echo done"
   }
 
